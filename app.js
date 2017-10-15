@@ -66,12 +66,41 @@ app.get('/genres', function(req, res){
 	});
 });
 
+app.post('/genres', function(req, res){
+	var genre = req.body;
+	Genre.addGenre(genre , function(error, genre){
+		if(error) {
+			throw error
+		};
+		res.json(genre);
+	});
+});
+
+app.post('/books', function(req, res){
+	var book = req.body;
+	Book.addOneBook(book , function(error, book){
+		if(error) {
+			throw error
+		};
+		res.json(book);
+	});
+});
+
 app.get('/books', function(req, res){
 	Book.getBooks(function(err, result) {
 		if(err) {
 			throw err;
 		};
 		res.json(result);
+	}); 
+});
+
+app.get('/books/:_id', function(req, res){
+	Book.getOneBook(req.params._id, function(err, book) {
+		if(err) {
+			throw err;
+		};
+		res.json(book);
 	});
 });
 
