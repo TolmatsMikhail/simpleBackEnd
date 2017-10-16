@@ -6,7 +6,11 @@ var genreSchema = mongoose.Schema({
 	name: {
 		type: String
 	},
-});
+},
+	{
+		versionKey: ''
+	}
+);
 
 var Genre = module.exports = mongoose.model('Genre', genreSchema);
 

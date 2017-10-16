@@ -95,6 +95,15 @@ app.get('/books', function(req, res){
 	}); 
 });
 
+app.delete('/books', function(req, res){
+	Book.removeOneBook(req.params.title, function(err, result) {
+		if(err) {
+			throw err;
+		};
+		res.json(result);
+	}); 
+});
+
 app.get('/books/:_id', function(req, res){
 	Book.getOneBook(req.params._id, function(err, book) {
 		if(err) {
